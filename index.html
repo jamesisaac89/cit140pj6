@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speeding Tickets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="https://unpkg.com/vue@3"></script> <!-- Corrected Vue.js version -->
+</head>
+<body>
+
+<div class="container">        
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Our Website</a>
+        </div>
+        <ul class="nav navbar-nav"> <!-- Fixed incorrect div tag -->
+            <li class="active"><a href="index.html">All Tickets</a></li>
+            <li><a href="25over.html">25mph or More Over</a></li>
+        </ul>
+    </nav>
+
+    <div id="ticketApp"> <!-- Matching ID for Vue.js -->
+        <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Time</th>
+                    <th>Posted Speed</th>
+                    <th>MPH Over</th>
+                    <th>Violator Sex</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr v-for="ticket in tickets" :key="ticket.tid"> <!-- Added key binding -->
+                    <td>{{ ticket.tid }}</td>
+                    <td>{{ ticket.stop_time }}</td>
+                    <td>{{ ticket.posted_speed }}</td>
+                    <td>{{ ticket.actual_speed - ticket.posted_speed }}</td>
+                    <td>{{ ticket.violator_sex }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- end of ticketApp -->
+</div> <!-- end of class='container' -->
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                tickets: [],
+            }
+        },
+        created() {
+            this.getData();
+        },
+        methods: {
+            async getData() {
+                const response = await fetch('tickets1.json');
+                this.tickets = await response.json();
+            },
+        }
+    });
+
+    app.mount('#ticketApp'); // Corrected from '#tickerApp' to '#ticketApp'
+</script>
+</body>
+</html>
