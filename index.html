@@ -26,9 +26,8 @@
     </nav>
 
     <div id="app" class="container mt-4">
-        <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
-        <table class="table table-striped">
-            <thead>
+    <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+        <table class="table table-bordered table-striped">
                 <tr>
                     <th>Ticket ID</th>
                     <th>Time</th>
@@ -36,8 +35,6 @@
                     <th>MPH Over</th>
                     <th>Violator Sex</th>
                 </tr>
-            </thead>
-            <tbody>
                <tr v-for="ticket in tickets">
                     <td>{{ticket.tid}}</td>
                     <td>{{ticket.stop_time}}</td>
@@ -45,33 +42,30 @@
                     <td>{{ticket.actual_speed - ticket.posted_speed}}</td>
                     <td>{{ticket.violator_sex}}</td>
                 </tr>
-            </tbody>
         </table>
-    </div>
-
-    <script>
-        new Vue({
-            el: '#app',
-            {
-                tickets: []
-            },
+</div>   <!-- end gpaApp -->
+</div>   <!-- end class= 'container' -->
+<script>
+        let app = Vue.createApp({
+             data() {
+                return {
+                    tickers: [],
+                }
+             },
             created() {
-                fetch('tickets1.json')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        this.tickets = data;
-                    })
-                    .catch(error => {
-                        console.error('There has been a problem with your fetch operation:', error);
-                    });
+                this.getData()
+            },
+            methods: {
+                async getData() {
+                    const response = wait fetch('tickets1.json')
+                    this.tickets = await response.json()
+
+                },
             }
-        });
-    </script>
+        })
+    app.mont('#tickerApp')
+           
+</script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
