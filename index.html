@@ -31,22 +31,18 @@
             <thead>
                 <tr>
                     <th>Ticket ID</th>
-                    <th>Stop Date</th>
-                    <th>Stop Time</th>
-                    <th>Actual Speed</th>
+                    <th>Time</th>
                     <th>Posted Speed</th>
-                    <th>Age</th>
+                    <th>MPH Over</th>
                     <th>Violator Sex</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="ticket in tickets" :key="ticket.tid">
                     <td>{{ ticket.tid }}</td>
-                    <td>{{ ticket.stop_date }}</td>
                     <td>{{ ticket.stop_time }}</td>
-                    <td>{{ ticket.actual_speed }}</td>
                     <td>{{ ticket.posted_speed }}</td>
-                    <td>{{ ticket.age }}</td>
+                    <td>{{ ticket.actual_speed }}</td>
                     <td>{{ ticket.violator_sex }}</td>
                 </tr>
             </tbody>
