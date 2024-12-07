@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
-    <script src="https://unpkg.com/vue@3"></script> <!-- Corrected Vue.js version -->
+    <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
 
@@ -15,13 +15,13 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Our Website</a>
         </div>
-        <ul class="nav navbar-nav"> <!-- Fixed incorrect div tag -->
+        <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">All Tickets</a></li>
             <li><a href="25over.html">25mph or More Over</a></li>
         </ul>
     </nav>
 
-    <div id="ticketApp"> <!-- Matching ID for Vue.js -->
+    <div id="ticketApp">
         <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
         <table class="table table-bordered table-striped">
             <thead>
@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-               <tr v-for="ticket in tickets" :key="ticket.tid"> <!-- Added key binding -->
+               <tr v-for="ticket in tickets" :key="ticket.tid">
                     <td>{{ ticket.tid }}</td>
                     <td>{{ ticket.stop_time }}</td>
                     <td>{{ ticket.posted_speed }}</td>
@@ -43,8 +43,8 @@
                 </tr>
             </tbody>
         </table>
-    </div> <!-- end of ticketApp -->
-</div> <!-- end of class='container' -->
+    </div>
+</div>
 
 <script>
     const app = Vue.createApp({
@@ -64,7 +64,7 @@
         }
     });
 
-    app.mount('#ticketApp'); // Corrected from '#tickerApp' to '#ticketApp'
+    app.mount('#ticketApp');
 </script>
 </body>
 </html>
