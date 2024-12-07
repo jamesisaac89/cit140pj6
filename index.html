@@ -59,7 +59,7 @@
             },
             methods: {
                 async getData() {
-                    const response = wait fetch('tickets1.json')
+                    const response = await fetch('tickets1.json')
                     this.tickets = await response.json()
 
                 },
@@ -67,7 +67,7 @@
         })
   
         
-        app.mont('#tickerApp')
+        app.mount('#tickerApp')
            
 
 </script>
